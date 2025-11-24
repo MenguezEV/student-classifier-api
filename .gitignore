@@ -1,0 +1,11 @@
+# Virtual environment folder (CRITICAL)
+.venv/
+venv/
+
+# Python files
+*.pyc
+__pycache__/
+
+# Logs and system files
+*.log
+.DS_Store

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Environment Classifier</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input[type="number"] { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; padding: 10px 15px; border: none; cursor: pointer; margin-top: 20px; font-size: 16px; border-radius: 5px; }
+        #result { margin-top: 25px; padding: 15px; border: 2px solid #333; min-height: 50px; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <h1>Student Environment Conduciveness Classifier</h1>
+    <p>Input the 13 environment and student features to get a performance assessment.</p>
+    
+    <form id="prediction-form">
+        <label for="natural_lighting_score">1. Natural Lighting Score (1-5):</label>
+        <input type="number" id="natural_lighting_score" name="natural_lighting_score" min="1" max="5" required value="4">
+
+        <label for="noise_level_db">2. Noise Level (dB, e.g., 50):</label>
+        <input type="number" id="noise_level_db" name="noise_level_db" required value="50">
+
+        <label for="internet_speed_mbps">3. Internet Speed (Mbps, e.g., 100):</label>
+        <input type="number" id="internet_speed_mbps" name="internet_speed_mbps" required value="100">
+
+        <label for="room_occupancy_type">4. Room Occupancy Type (1=Single, 2=Double, etc.):</label>
+        <input type="number" id="room_occupancy_type" name="room_occupancy_type" min="1" max="4" required value="1">
+
+        <label for="study_space_availability">5. Dedicated Study Space (0=No, 1=Yes):</label>
+        <input type="number" id="study_space_availability" name="study_space_availability" min="0" max="1" required value="1">
+
+        <label for="bathroom_quality_rating">6. Bathroom Quality Rating (1-5):</label>
+        <input type="number" id="bathroom_quality_rating" name="bathroom_quality_rating" min="1" max="5" required value="5">
+
+        <label for="kitchen_access_score">7. Kitchen Access Score (1-5):</label>
+        <input type="number" id="kitchen_access_score" name="kitchen_access_score" min="1" max="5" required value="5">
+
+        <label for="security_level">8. Security Level (1-5):</label>
+        <input type="number" id="security_level" name="security_level" min="1" max="5" required value="5">
+
+        <label for="maintenance_quality">9. Maintenance Quality (1-5):</label>
+        <input type="number" id="maintenance_quality" name="maintenance_quality" min="1" max="5" required value="4">
+
+        <label for="distance_to_university_km">10. Distance to University (km, e.g., 1.5):</label>
+        <input type="number" id="distance_to_university_km" name="distance_to_university_km" step="0.1" required value="1.5">
+
+        <label for="public_transport_access">11. Public Transport Access (0=No, 1=Yes):</label>
+        <input type="number" id="public_transport_access" name="public_transport_access" min="0" max="1" required value="1">
+
+        <label for="monthly_rent_php_log">12. Log of Monthly Rent (e.g., 8.9):</label>
+        <input type="number" id="monthly_rent_php_log" name="monthly_rent_php_log" step="0.1" required value="8.9">
+        
+        <label for="study_hours_available">13. Weekly Study Hours Available (e.g., 30):</label>
+        <input type="number" id="study_hours_available" name="study_hours_available" required value="30">
+        
+        <button type="submit">Get Conduciveness Assessment</button>
+    </form>
+    
+    <div id="result">
+        Result will appear here.
+    </div>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect all form data into an object
+            const formData = new FormData(e.target);
+            const inputData = {};
+            
+            // Convert strings from form fields to numbers
+            formData.forEach((value, key) => {
+                inputData[key] = parseFloat(value);
+            });
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Sending data to model...';
+            
+            // !!! IMPORTANT: CHANGE THIS URL AFTER DEPLOYMENT !!!
+            const apiUrl = 'http://127.0.0.1:5000/predict'; 
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(inputData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    resultDiv.innerHTML = `
+                        <h2>Assessment Result:</h2>
+                        <p><strong>Conduciveness:</strong> ${data.assessment}</p>
+                        <p>Prediction Code: ${data.conduciveness_score}</p>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<h2>Error:</h2><p>${data.error || data.message}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Fetch Error:', error);
+                resultDiv.innerHTML = `<h2>Network Error:</h2><p>Could not connect to the API. Please ensure the Flask server is running locally.</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
