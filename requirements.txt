@@ -1,7 +1,8 @@
+# ... existing packages
 Flask
+joblib
 numpy
 pandas
-scikit-learn==1.6.1
-joblib
+scikit-learn==1.7.2 # or whichever version you settled on
 gunicorn
-
+Flask-CORS # <--- ADD THIS LINE

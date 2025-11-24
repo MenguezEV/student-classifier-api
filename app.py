@@ -3,6 +3,9 @@ import numpy as np
 import pandas as pd
 from flask import Flask, request, jsonify
 
+
+from flask_cors import CORS  # <--- NEW LINE
+
 # --- Configuration: Feature List and Class Map ---
 # !!! IMPORTANT: These feature names and their order MUST match the data 
 # your model was trained on in the Colab notebook. 
@@ -22,6 +25,10 @@ CLASS_MAP = {
 
 # --- API Setup ---
 app = Flask(__name__)
+
+
+CORS(app)  # <--- NEW LINE
+
 
 # Load model and scaler once at startup to improve prediction speed
 try:
