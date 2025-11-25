@@ -102,6 +102,29 @@
             font-style: italic;
         }
 
+        /* --- NEW STYLES FOR ABOUT LINK --- */
+        .about-link {
+            margin-top: 25px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .about-link a {
+            color: #a3e635; /* The primary accent color */
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #a3e635;
+            border-radius: 8px;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .about-link a:hover {
+            background: rgba(163, 230, 53, 0.2);
+            box-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
+        }
+        /* --- END NEW STYLES --- */
+
         .right-panel {
             /* Now transparent to let the full background image show through */
             background: transparent; 
@@ -324,13 +347,13 @@
 </head>
 <body>
     <div class="hero-section">
-        <!-- New element to hold the background image across the whole section -->
         <div class="full-bg"></div>
 
         <div class="left-panel">
             <div class="logo">S</div>
             <h1 class="hero-title">Student Environment Classifier</h1>
             <p class="hero-subtitle">Assess Your Living Conditions</p>
+            <p class="about-link"><a href="about.html">Learn About the Classes →</a></p>
         </div>
 
         <div class="right-panel">
@@ -347,7 +370,6 @@
                 </div>
 
                 <form id="prediction-form">
-                    <!-- Step 1 -->
                     <div class="form-step active" data-step="1">
                         <div class="form-grid">
                             <div class="form-group">
@@ -380,7 +402,6 @@
                         </div>
                     </div>
 
-                    <!-- Step 2 -->
                     <div class="form-step" data-step="2">
                         <div class="form-grid">
                             <div class="form-group">
@@ -409,7 +430,6 @@
                         </div>
                     </div>
 
-                    <!-- Step 3 -->
                     <div class="form-step" data-step="3">
                         <div class="form-grid">
                             <div class="form-group">

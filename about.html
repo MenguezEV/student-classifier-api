@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Classification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Prevent main body scroll */
+            overflow: hidden; 
+            height: 100vh;
+            /* Reusing the background style from index.html for visual consistency */
+            background-image: url('https://images.pexels.com/photos/29945183/pexels-photo-29945183.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            /* This mimics the form-container's dark, semi-transparent background */
+            background: rgba(31, 41, 55, 0.9); 
+            border-radius: 24px;
+            padding: 40px;
+            width: 90%;
+            max-width: 800px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            /* Ensure container content fits and doesn't push the whole page */
+            flex-shrink: 0;
+        }
+
+        .header {
+            border-bottom: 2px solid #a3e635;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            color: #a3e635;
+            margin-bottom: 10px;
+        }
+
+        .class-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Add pointer to suggest interactivity */
+            cursor: pointer;
+        }
+
+        .class-section h2 {
+            font-size: 24px;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+            transition: all 0.2s; /* Transition for visual feedback on hover */
+        }
+        
+        /* The Content Block to be hidden/shown */
+        .class-content {
+            /* Initially hidden using max-height and opacity */
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding-top: 0;
+            
+            /* Smooth transition for expansion/fade */
+            transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in, padding-top 0.5s ease-in-out;
+        }
+
+        /* Rule to show the content when the parent section is hovered */
+        .class-section:hover .class-content {
+            max-height: 500px; /* Sufficiently large value for content */
+            opacity: 1;
+            padding-top: 15px;
+        }
+        
+        /* Optional: Add a subtle divider when expanded */
+        .class-section:hover h2 {
+             padding-bottom: 5px;
+             border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .class-content p {
+            margin-bottom: 15px;
+        }
+
+        .class-content ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        
+        .class-content ul li {
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #a3e635;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border: 2px solid #a3e635;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .back-link:hover {
+            background: rgba(163, 230, 53, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Understanding the Environment Classes</h1>
+        <p>Hover over the class title below to view the detailed explanation and key indicators.</p>
+    </div>
+
+    <!-- Class 1: Highly Conducive (Now hoverable) -->
+    <div class="class-section">
+        <h2 style="color: #6EE7B7;">Highly Conducive Environment</h2>
+        <div class="class-content">
+            <p>An environment assessed as "Highly Conducive" provides optimal conditions for a student's academic focus and well-being. These spaces generally score high across all input variables.</p>
+            <ul>
+                <li>**Key Indicators:** Excellent natural lighting, low noise levels (e.g., < 40 dB), high-speed internet, and superior maintenance/security ratings (4-5).</li>
+                <li>**Impact:** Maximizes study effectiveness and minimizes stress factors, promoting high academic performance.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Class 2: Moderately Conducive (Now hoverable) -->
+    <div class="class-section">
+        <h2 style="color: #FACC15;">Moderately Conducive Environment</h2>
+        <div class="class-content">
+            <p>This classification indicates a balance between positive and negative factors. The environment is generally suitable for study but may have minor deficiencies that require management or compromise.</p>
+            <ul>
+                <li>**Key Indicators:** Average scores in categories like noise (e.g., 40-60 dB) or maintenance (3-4). Factors like distance to the university or shared occupancy might be slightly limiting.</li>
+                <li>**Impact:** Adequate for study, but students may need to employ coping strategies (e.g., noise-canceling headphones, fixed study schedules) to overcome minor distractions.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Class 3: Least Conducive (Now hoverable) -->
+    <div class="class-section">
+        <h2 style="color: #F87171;">Least Conducive Environment</h2>
+        <div class="class-content">
+            <p>An environment classified as "Least Conducive" presents significant challenges to the student's ability to focus, rest, or maintain well-being. This is often due to multiple high-impact negative factors.</p>
+            <ul>
+                <li>**Key Indicators:** High noise levels (> 60 dB), very limited natural lighting (1-2), poor security or maintenance, and low internet speeds.</li>
+                <li>**Impact:** Significant detriment to academic focus, potentially leading to increased stress, difficulty concentrating, and lower academic outcomes. These environments require immediate intervention or relocation.</li>
+            </ul>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Return to Assessment</a>
+
+</div>
+
+</body>
+</html>
