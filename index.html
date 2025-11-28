@@ -363,23 +363,23 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="noise_level">Noise Level (1-5):</label>
-                                <input type="number" id="noise_level" name="noise_level" min="1" max="5" required value="3" placeholder="1=Very Quiet, 5=Very Noisy">
+                                <label for="noise_level_db">Noise Level (1-5):</label>
+                                <input type="number" id="noise_level_db" name="noise_level_db" min="1" max="5" required value="3" placeholder="1=Very Quiet, 5=Very Noisy">
                             </div>
 
                             <div class="form-group">
-                                <label for="internet_speed">Internet Speed (1-5):</label>
-                                <input type="number" id="internet_speed" name="internet_speed" min="1" max="5" required value="3" placeholder="1=Very Slow, 5=Very Fast">
+                                <label for="internet_speed_mbps">Internet Speed (1-5):</label>
+                                <input type="number" id="internet_speed_mbps" name="internet_speed_mbps" min="1" max="5" required value="3" placeholder="1=Very Slow, 5=Very Fast">
                             </div>
 
                             <div class="form-group">
-                                <label for="room_occupancy">Room Occupancy (1-4):</label>
-                                <input type="number" id="room_occupancy" name="room_occupancy" min="1" max="4" required value="2" placeholder="1=Solo, 2=Shared, 3=Dorm, 4=Crowded">
+                                <label for="room_occupancy_type">Room Occupancy (1-4):</label>
+                                <input type="number" id="room_occupancy_type" name="room_occupancy_type" min="1" max="4" required value="2" placeholder="1=Solo, 2=Shared, 3=Dorm, 4=Crowded">
                             </div>
 
                             <div class="form-group">
-                                <label for="study_space">Dedicated Study Space (1-5):</label>
-                                <input type="number" id="study_space" name="study_space" min="1" max="5" required value="3" placeholder="1=None, 5=Excellent">
+                                <label for="study_space_availability">Dedicated Study Space (1-5):</label>
+                                <input type="number" id="study_space_availability" name="study_space_availability" min="1" max="5" required value="3" placeholder="1=None, 5=Excellent">
                             </div>
                         </div>
                         <div class="button-group">
@@ -390,13 +390,13 @@
                     <div class="form-step" data-step="2">
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="bathroom_quality">Bathroom Quality (1-5):</label>
-                                <input type="number" id="bathroom_quality" name="bathroom_quality" min="1" max="5" required value="3" placeholder="1=Poor, 5=Excellent">
+                                <label for="bathroom_quality_rating">Bathroom Quality (1-5):</label>
+                                <input type="number" id="bathroom_quality_rating" name="bathroom_quality_rating" min="1" max="5" required value="3" placeholder="1=Poor, 5=Excellent">
                             </div>
 
                             <div class="form-group">
-                                <label for="kitchen_access">Kitchen Access (1-5):</label>
-                                <input type="number" id="kitchen_access" name="kitchen_access" min="1" max="5" required value="3" placeholder="1=None, 5=Full Access">
+                                <label for="kitchen_access_score">Kitchen Access (1-5):</label>
+                                <input type="number" id="kitchen_access_score" name="kitchen_access_score" min="1" max="5" required value="3" placeholder="1=None, 5=Full Access">
                             </div>
 
                             <div class="form-group">
@@ -418,23 +418,23 @@
                     <div class="form-step" data-step="3">
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="distance_to_university">Distance to University (km):</label>
-                                <input type="number" id="distance_to_university" name="distance_to_university" step="0.1" min="0" required value="1.5" placeholder="e.g., 0.3, 1.5, 2.3">
+                                <label for="distance_to_university_km">Distance to University (km):</label>
+                                <input type="number" id="distance_to_university_km" name="distance_to_university_km" step="0.1" min="0" required value="1.5" placeholder="e.g., 0.3, 1.5, 2.3">
                             </div>
 
                             <div class="form-group">
-                                <label for="public_transport">Public Transport Access (1-5):</label>
-                                <input type="number" id="public_transport" name="public_transport" min="1" max="5" required value="3" placeholder="1=None, 5=Excellent">
+                                <label for="public_transport_access">Public Transport Access (1-5):</label>
+                                <input type="number" id="public_transport_access" name="public_transport_access" min="1" max="5" required value="3" placeholder="1=None, 5=Excellent">
                             </div>
 
                             <div class="form-group">
-                                <label for="monthly_rent">Monthly Rent (Log PHP):</label>
-                                <input type="number" id="monthly_rent" name="monthly_rent" step="0.01" min="0" required value="8.5" placeholder="Log value: e.g., 7.3-8.5">
+                                <label for="monthly_rent_php">Monthly Rent (PHP):</label>
+                                <input type="number" id="monthly_rent_php" name="monthly_rent_php" step="0.01" min="0" required value="8.5" placeholder="Log value: e.g., 7.3-8.5">
                             </div>
                             
                             <div class="form-group">
-                                <label for="study_hours">Study Hours (Daily):</label>
-                                <input type="number" id="study_hours" name="study_hours" step="0.1" min="0" required value="2.0" placeholder="e.g., 1.2, 1.8, 2.3">
+                                <label for="study_hours_available">Study Hours (Daily):</label>
+                                <input type="number" id="study_hours_available" name="study_hours_available" step="0.1" min="0" required value="2.0" placeholder="e.g., 1.2, 1.8, 2.3">
                             </div>
                         </div>
                         <div class="button-group">
