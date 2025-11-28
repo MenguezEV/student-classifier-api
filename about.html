@@ -13,84 +13,192 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Prevent main body scroll */
-            overflow: hidden; 
-            height: 100vh;
-            /* Reusing the background style from index.html for visual consistency */
+            overflow-x: hidden;
             background-image: url('https://images.pexels.com/photos/29945183/pexels-photo-29945183.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 40px 20px;
         }
 
         .container {
-            /* This mimics the form-container's dark, semi-transparent background */
-            background: rgba(31, 41, 55, 0.9); 
+            background: rgba(31, 41, 55, 0.95); 
             border-radius: 24px;
-            padding: 40px;
-            width: 90%;
-            max-width: 800px;
+            padding: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
             color: white;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            /* Ensure container content fits and doesn't push the whole page */
-            flex-shrink: 0;
         }
 
         .header {
             border-bottom: 2px solid #a3e635;
             padding-bottom: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .header h1 {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 900;
             color: #a3e635;
             margin-bottom: 10px;
         }
 
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Two-column layout */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+        }
+
+        .left-column, .right-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #a3e635;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(163, 230, 53, 0.3);
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        /* Field Cards with hover effect */
+        .field-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .field-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(163, 230, 53, 0.4);
+            transform: translateX(5px);
+        }
+
+        .field-card h3 {
+            font-size: 18px;
+            color: #a3e635;
+            margin-bottom: 8px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .field-card .field-range {
+            font-size: 13px;
+            color: #d1d5db;
+            margin-bottom: 0;
+            font-weight: 600;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in, margin-bottom 0.4s ease-in-out;
+        }
+
+        .field-card p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in, margin-top 0.4s ease-in-out;
+        }
+
+        .field-card .field-impact {
+            padding-top: 8px;
+            margin-top: 0;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+            font-style: italic;
+            color: #fbbf24;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, opacity 0.3s ease-in, margin-top 0.4s ease-in-out, padding-top 0.4s ease-in-out;
+        }
+
+        /* Show content on hover */
+        .field-card:hover .field-range {
+            max-height: 50px;
+            opacity: 1;
+            margin-bottom: 8px;
+        }
+
+        .field-card:hover p {
+            max-height: 200px;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        .field-card:hover .field-impact {
+            max-height: 100px;
+            opacity: 1;
+            margin-top: 8px;
+            padding-top: 8px;
+        }
+
+        .field-card:hover h3 {
+            padding-bottom: 5px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        /* Class sections with hover effect */
         .class-section {
             margin-bottom: 20px;
             padding: 20px;
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            /* Add pointer to suggest interactivity */
             cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .class-section:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(163, 230, 53, 0.4);
+            transform: translateX(-5px);
         }
 
         .class-section h2 {
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 0;
             padding-bottom: 0;
             border-bottom: none;
-            transition: all 0.2s; /* Transition for visual feedback on hover */
+            transition: all 0.2s;
         }
         
-        /* The Content Block to be hidden/shown */
         .class-content {
-            /* Initially hidden using max-height and opacity */
             max-height: 0;
             opacity: 0;
             overflow: hidden;
             padding-top: 0;
-            
-            /* Smooth transition for expansion/fade */
             transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in, padding-top 0.5s ease-in-out;
         }
 
-        /* Rule to show the content when the parent section is hovered */
         .class-section:hover .class-content {
-            max-height: 500px; /* Sufficiently large value for content */
+            max-height: 500px;
             opacity: 1;
             padding-top: 15px;
         }
         
-        /* Optional: Add a subtle divider when expanded */
         .class-section:hover h2 {
              padding-bottom: 5px;
              border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
@@ -98,6 +206,7 @@
 
         .class-content p {
             margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         .class-content ul {
@@ -107,23 +216,49 @@
         
         .class-content ul li {
             margin-bottom: 8px;
-            font-size: 15px;
+            font-size: 14px;
+            line-height: 1.5;
         }
 
         .back-link {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 40px;
             color: #a3e635;
             text-decoration: none;
             font-weight: 600;
-            padding: 8px 15px;
+            padding: 12px 25px;
             border: 2px solid #a3e635;
             border-radius: 8px;
-            transition: background 0.2s;
+            transition: all 0.2s;
         }
 
         .back-link:hover {
-            background: rgba(163, 230, 53, 0.1);
+            background: rgba(163, 230, 53, 0.2);
+            box-shadow: 0 0 10px rgba(163, 230, 53, 0.5);
+        }
+
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
@@ -131,43 +266,146 @@
 
 <div class="container">
     <div class="header">
-        <h1>Understanding the Environment Classes</h1>
-        <p>Hover over the class title below to view the detailed explanation and key indicators.</p>
+        <h1>Understanding the Assessment System</h1>
+        <p>Hover over any card to reveal detailed information about classification levels and assessment factors.</p>
     </div>
 
-    <!-- Class 1: Highly Conducive (Now hoverable) -->
-    <div class="class-section">
-        <h2 style="color: #6EE7B7;">Highly Conducive Environment</h2>
-        <div class="class-content">
-            <p>An environment assessed as "Highly Conducive" provides optimal conditions for a student's academic focus and well-being. These spaces generally score high across all input variables.</p>
-            <ul>
-                <li>**Key Indicators:** Excellent natural lighting, low noise levels (e.g., < 40 dB), high-speed internet, and superior maintenance/security ratings (4-5).</li>
-                <li>**Impact:** Maximizes study effectiveness and minimizes stress factors, promoting high academic performance.</li>
-            </ul>
+    <div class="content-wrapper">
+        <!-- LEFT COLUMN: Assessment Factors -->
+        <div class="left-column">
+            <h2 class="section-title">📋 Assessment Factors</h2>
+            <p class="section-subtitle">Hover over each factor to learn what it measures and why it matters.</p>
+
+            <!-- Living Conditions -->
+            <div class="field-card">
+                <h3>💡 Natural Lighting</h3>
+                <div class="field-range">Scale: 1-5</div>
+                <p>Measures the amount of natural sunlight in your living space. Good natural lighting improves mood, reduces eye strain, and regulates sleep patterns.</p>
+                <div class="field-impact">1 = Very dark rooms | 5 = Abundant sunlight</div>
+            </div>
+
+            <div class="field-card">
+                <h3>🔊 Noise Level</h3>
+                <div class="field-range">Scale: 1-5</div>
+                <p>Assesses the ambient noise in your environment. Lower noise levels enable better concentration and quality sleep, crucial for academic success.</p>
+                <div class="field-impact">1 = Very quiet | 5 = Very noisy/disruptive</div>
+            </div>
+
+            <div class="field-card">
+                <h3>🌐 Internet Speed</h3>
+                <div class="field-range">Scale: 1-5</div>
+                <p>Evaluates your internet connection quality. Fast, reliable internet is essential for online classes, research, and assignment submissions.</p>
+                <div class="field-impact">1 = Very slow/unreliable | 5 = Very fast/stable</div>
+            </div>
+
+            <div class="field-card">
+                <h3>🚪 Room Occupancy</h3>
+                <div class="field-range">Scale: 1-3</div>
+                <p>Indicates how many people share your space. Privacy affects study effectiveness and personal well-being.</p>
+                <div class="field-impact">1 = Solo room | 2 = Shared | 3 = Dorm/Crowded</div>
+            </div>
+
+            <div class="field-card">
+                <h3>📚 Study Space</h3>
+                <div class="field-range">Scale: 1-5</div>
+                <p>Measures availability of dedicated study areas. Having a proper desk and chair in a quiet area significantly improves focus and productivity.</p>
+                <div class="field-impact">1 = No space | 5 = Dedicated study room</div>
+            </div>
+
+            <div class="field-card">
+                <h3>🚿 Bathroom Quality</h3>
+                <div class="field-range">Scale: 1-5</div>
+                <p>Assesses cleanliness, functionality, and privacy of bathroom facilities. Good hygiene facilities are essential for health and comfort.</p>
+                <div class="field-impact">1 = Poor/shared | 5 = Excellent/private</div>
+            </div>
+
+            <div class="field-card">
+                <h3>🍳 Kitchen Access</h3>
+                <div class="field-range">Scale: 1-5</div>
+                <p>Evaluates cooking facilities availability. Proper kitchen access enables healthy eating and cost savings compared to eating out.</p>
+                <div class="field-impact">1 = No access | 5 = Full kitchen</div>
+            </div>
+
+            <div class="field-card">
+                <h3>🔒 Security Level</h3>
+                <div class="field-range">Scale: 1-5</div>
+                <p>Measures safety features like locks, guards, or security systems. Good security provides peace of mind and protects belongings.</p>
+                <div class="field-impact">1 = Poor security | 5 = Excellent security</div>
+            </div>
+
+            <div class="field-card">
+                <h3>🔧 Maintenance Quality</h3>
+                <div class="field-range">Scale: 1-5</div>
+                <p>Rates how well the property is maintained and how quickly issues are addressed. Good maintenance prevents disruptions to daily life.</p>
+                <div class="field-impact">1 = Poorly maintained | 5 = Well maintained</div>
+            </div>
+
+            <div class="field-card">
+                <h3>📍 Distance to University</h3>
+                <div class="field-range">In kilometers</div>
+                <p>Physical distance from your residence to campus. Shorter distances save time and transportation costs, allowing more time for study.</p>
+                <div class="field-impact">Examples: 0.3 km (walking), 1.5 km (biking), 2.5+ km (commute)</div>
+            </div>
+
+            <div class="field-card">
+                <h3>🚌 Public Transport</h3>
+                <div class="field-range">Scale: 1-5</div>
+                <p>Availability and quality of public transportation nearby. Good transport access is crucial if you're far from campus or need to travel.</p>
+                <div class="field-impact">1 = No access | 5 = Excellent access</div>
+            </div>
+
+            <div class="field-card">
+                <h3>💰 Monthly Rent</h3>
+                <div class="field-range">Logarithmic scale</div>
+                <p>Your monthly rental cost (logged for analysis). Rent impacts financial stress and budget for other necessities like food and supplies.</p>
+                <div class="field-impact">7.3 = Affordable | 8.5+ = Expensive</div>
+            </div>
+
+            <div class="field-card">
+                <h3>⏰ Study Hours Available</h3>
+                <div class="field-range">Weekly hours (logged)</div>
+                <p>Time available for focused studying per week. More study time generally correlates with better academic outcomes and less stress.</p>
+                <div class="field-impact">1.2 = Limited time | 2.3+ = Flexible schedule</div>
+            </div>
         </div>
-    </div>
 
-    <!-- Class 2: Moderately Conducive (Now hoverable) -->
-    <div class="class-section">
-        <h2 style="color: #FACC15;">Moderately Conducive Environment</h2>
-        <div class="class-content">
-            <p>This classification indicates a balance between positive and negative factors. The environment is generally suitable for study but may have minor deficiencies that require management or compromise.</p>
-            <ul>
-                <li>**Key Indicators:** Average scores in categories like noise (e.g., 40-60 dB) or maintenance (3-4). Factors like distance to the university or shared occupancy might be slightly limiting.</li>
-                <li>**Impact:** Adequate for study, but students may need to employ coping strategies (e.g., noise-canceling headphones, fixed study schedules) to overcome minor distractions.</li>
-            </ul>
-        </div>
-    </div>
+        <!-- RIGHT COLUMN: Classification Levels -->
+        <div class="right-column">
+            <h2 class="section-title">📊 Classification Levels</h2>
+            <p class="section-subtitle">Hover over each class to view detailed explanations.</p>
 
-    <!-- Class 3: Least Conducive (Now hoverable) -->
-    <div class="class-section">
-        <h2 style="color: #F87171;">Least Conducive Environment</h2>
-        <div class="class-content">
-            <p>An environment classified as "Least Conducive" presents significant challenges to the student's ability to focus, rest, or maintain well-being. This is often due to multiple high-impact negative factors.</p>
-            <ul>
-                <li>**Key Indicators:** High noise levels (> 60 dB), very limited natural lighting (1-2), poor security or maintenance, and low internet speeds.</li>
-                <li>**Impact:** Significant detriment to academic focus, potentially leading to increased stress, difficulty concentrating, and lower academic outcomes. These environments require immediate intervention or relocation.</li>
-            </ul>
+            <div class="class-section">
+                <h2 style="color: #6EE7B7;">🟢 Highly Conducive</h2>
+                <div class="class-content">
+                    <p>An environment assessed as "Highly Conducive" provides optimal conditions for a student's academic focus and well-being. These spaces generally score high across all input variables.</p>
+                    <ul>
+                        <li><strong>Key Indicators:</strong> Excellent natural lighting (4-5), low noise levels (1-2), high-speed internet (4-5), and superior maintenance/security ratings (4-5).</li>
+                        <li><strong>Impact:</strong> Maximizes study effectiveness and minimizes stress factors, promoting high academic performance.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="class-section">
+                <h2 style="color: #FACC15;">🟡 Moderately Conducive</h2>
+                <div class="class-content">
+                    <p>This classification indicates a balance between positive and negative factors. The environment is generally suitable for study but may have minor deficiencies that require management or compromise.</p>
+                    <ul>
+                        <li><strong>Key Indicators:</strong> Average scores in categories like noise (3), lighting (3), or maintenance (2-3). Factors like distance to the university or shared occupancy might be slightly limiting.</li>
+                        <li><strong>Impact:</strong> Adequate for study, but students may need to employ coping strategies (e.g., noise-canceling headphones, fixed study schedules) to overcome minor distractions.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="class-section">
+                <h2 style="color: #F87171;">🔴 Least Conducive</h2>
+                <div class="class-content">
+                    <p>An environment classified as "Least Conducive" presents significant challenges to the student's ability to focus, rest, or maintain well-being. This is often due to multiple high-impact negative factors.</p>
+                    <ul>
+                        <li><strong>Key Indicators:</strong> High noise levels (4-5), very limited natural lighting (1-2), poor security or maintenance (1-2), and low internet speeds (1-2).</li>
+                        <li><strong>Impact:</strong> Significant detriment to academic focus, potentially leading to increased stress, difficulty concentrating, and lower academic outcomes. These environments require immediate intervention or relocation.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
