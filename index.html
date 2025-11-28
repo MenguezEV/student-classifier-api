@@ -502,7 +502,7 @@
         });
 
         // --- API Submission Logic ---
-        document.getElementById('prediction-form').addEventListener('submit', function(e) {
+        document.getElementById('prediction-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData(e.target);
@@ -513,6 +513,10 @@
                 inputData[key] = parseFloat(value);
             });
 
+            // Log the data being sent for debugging
+            console.log('=== SENDING DATA TO API ===');
+            console.log(JSON.stringify(inputData, null, 2));
+
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = '<p>Loading...</p>';
@@ -520,21 +524,45 @@
             // Your API URL
             const apiUrl = 'https://boardinghouseimpact-on.onrender.com/predict'; 
 
-            fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(inputData),
-            })
-            .then(response => {
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(inputData),
+                });
+
+                console.log('=== API RESPONSE STATUS ===');
+                console.log(response.status);
+
+                const responseText = await response.text();
+                console.log('=== API RESPONSE TEXT ===');
+                console.log(responseText);
+
                 if (!response.ok) {
-                    // Throw an error if the HTTP status is not 2xx
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    // Try to parse as JSON for better error message
+                    try {
+                        const errorData = JSON.parse(responseText);
+                        resultDiv.innerHTML = `
+                            <h2>API Error (${response.status})</h2>
+                            <p><strong>Message:</strong> ${errorData.message || errorData.error || errorData.detail || 'Unknown error'}</p>
+                            <p style="font-size: 12px; opacity: 0.7; margin-top: 10px;">Check browser console (F12) for full details</p>
+                        `;
+                    } catch {
+                        resultDiv.innerHTML = `
+                            <h2>API Error (${response.status})</h2>
+                            <p>${responseText}</p>
+                            <p style="font-size: 12px; opacity: 0.7; margin-top: 10px;">Check browser console (F12) for full details</p>
+                        `;
+                    }
+                    return;
                 }
-                return response.json();
-            })
-            .then(data => {
+
+                const data = JSON.parse(responseText);
+                console.log('=== API SUCCESS ===');
+                console.log(data);
+
                 if (data.status === 'success') {
                     resultDiv.innerHTML = `
                         <h2>Assessment Result</h2>
@@ -544,11 +572,15 @@
                 } else {
                     resultDiv.innerHTML = `<h2>Error</h2><p>${data.error || data.message || 'An unknown error occurred on the server.'}</p>`;
                 }
-            })
-            .catch(error => {
-                console.error('Fetch Error:', error);
-                resultDiv.innerHTML = `<h2>Network Error</h2><p>Could not connect to the API or server error. Details: ${error.message}</p>`;
-            });
+            } catch (error) {
+                console.error('=== FETCH ERROR ===');
+                console.error(error);
+                resultDiv.innerHTML = `
+                    <h2>Network Error</h2>
+                    <p>${error.message}</p>
+                    <p style="font-size: 12px; opacity: 0.7; margin-top: 10px;">Check browser console (F12) for full details</p>
+                `;
+            }
         });
     </script>
 </body>
